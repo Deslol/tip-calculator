@@ -1,7 +1,8 @@
+import styles from './TextAndInput.module.css'
 export default function TextAndInput({children, inputType}) {
     return (
-        <li>
-            <span>{children}</span>
+        <div className={styles.inputContainer}>
+            <p>{children}</p>
             <input type={inputType}/>
-        </li>)
+        </div>)
 }
