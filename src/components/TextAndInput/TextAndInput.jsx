@@ -1,12 +1,11 @@
 import styles from './TextAndInput.module.css'
-import {useState} from "react";
 
-export default function TextAndInput({children, inputType, options = [], callbackFn}) {
+export default function TextAndInput({children, inputType, options = [], callbackFn, value}) {
     return (
         <div className={styles.inputContainer}>
             <p>{children}</p>
             {inputType === "select" ?
-                <select onChange={(e) => callbackFn(Number(e.target.value))}>
+                <select onChange={(e) => callbackFn(Number(e.target.value))} value={value}>
                     {options.map((option, i) =>
                         <option
                             key={i}
@@ -14,6 +13,6 @@ export default function TextAndInput({children, inputType, options = [], callbac
                         >
                             {option.text} ({option.percent * 100}%)</option>)}
                 </select> :
-                <input type={inputType} onChange={(e) => callbackFn(Number(e.target.value))}/>}
+                <input type={inputType} value={value} onChange={(e) => callbackFn(Number(e.target.value))}/>}
         </div>)
 }

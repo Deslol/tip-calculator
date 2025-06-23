@@ -51,13 +51,17 @@ function App() {
     return (
         <>
             <div>
-                <TextAndInput inputType='number' callbackFn={handleBillInput}>How much was the bill?</TextAndInput>
-                <TextAndInput inputType="select" options={options} callbackFn={handleMyTipSelection}>How did you like
-                    the
-                    service?</TextAndInput>
-                <TextAndInput inputType="select" options={options} callbackFn={handleFriendTipSelection}>How did your
-                    friend like
-                    the service?</TextAndInput>
+                <TextAndInput inputType='number' callbackFn={handleBillInput} value={bill}>
+                    <span>How much was the bill?</span>
+                </TextAndInput>
+                <TextAndInput inputType="select" options={options} callbackFn={handleMyTipSelection}
+                              value={myTipPercent}>
+                    <span>How did you like the service?</span>
+                </TextAndInput>
+                <TextAndInput inputType="select" options={options} callbackFn={handleFriendTipSelection}
+                              value={friendTipPercent}>
+                    <span>How did your friend like the service? </span>
+                </TextAndInput>
             </div>
             <Summary bill={bill} tipPercent={tipTotalPercent}/>
             <ReusableBtn callbackFn={handleReset}>Reset</ReusableBtn>
