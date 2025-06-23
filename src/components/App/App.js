@@ -6,7 +6,10 @@ import {useState} from "react";
 
 function App() {
     const [bill, setBill] = useState(0)
-    const [tip, setTip] = useState(0)
+    const [myTipPercent, setMyTipPercent] = useState(0)
+    const [friendTipPercent, setFriendTipPercent] = useState(0)
+
+    const tipTotalPercent = myTipPercent + friendTipPercent
 
     const options = [
         {
@@ -27,15 +30,37 @@ function App() {
         },
     ]
 
+    function handleReset() {
+        setBill(0);
+        setMyTipPercent(0);
+        setFriendTipPercent(0);
+    }
+
+    function handleMyTipSelection(input) {
+        setMyTipPercent(input)
+    }
+
+    function handleFriendTipSelection(input) {
+        setFriendTipPercent(input)
+    }
+
+    function handleBillInput(input) {
+        setBill(input)
+    }
+
     return (
         <>
             <div>
-                <TextAndInput>How much was the bill?</TextAndInput>
-                <TextAndInput inputType="select" options={options}>How did you like the service?</TextAndInput>
-                <TextAndInput inputType="select" options={options}>How did your friend like the service?</TextAndInput>
+                <TextAndInput inputType='number' callbackFn={handleBillInput}>How much was the bill?</TextAndInput>
+                <TextAndInput inputType="select" options={options} callbackFn={handleMyTipSelection}>How did you like
+                    the
+                    service?</TextAndInput>
+                <TextAndInput inputType="select" options={options} callbackFn={handleFriendTipSelection}>How did your
+                    friend like
+                    the service?</TextAndInput>
             </div>
-            <Summary/>
-            <ReusableBtn>Reset</ReusableBtn>
+            <Summary bill={bill} tipPercent={tipTotalPercent}/>
+            <ReusableBtn callbackFn={handleReset}>Reset</ReusableBtn>
         </>
     );
 }

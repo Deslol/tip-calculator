@@ -1,4 +1,5 @@
-export default function Summary({bill = 0, tip = 0}) {
-    const sum = bill + tip
+export default function Summary({bill = 0, tipPercent = 0}) {
+    const tip = Math.round(tipPercent * bill)
+    const sum = Math.round(bill + tip)
     return <h2>You pay ${sum} (${bill} + ${tip} tip)</h2>
 }
